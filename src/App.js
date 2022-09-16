@@ -6,16 +6,13 @@ import { persistor, store } from "./redux/store";
 
 function App() {
   return (
-    <div>
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <BrowserRouter>
-            <ApplicationRoutes />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </div>
-
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <ApplicationRoutes />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 }
 
