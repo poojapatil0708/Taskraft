@@ -9,8 +9,6 @@ const ApplicationRoutes = () => {
 
   const { user } = useSelector(state => state.user)
 
-  // console.log(user)
-
   return (
     <Routes>
       {
@@ -21,9 +19,9 @@ const ApplicationRoutes = () => {
           </Route>
           :
           <Route>
-            <Route path="*" element={<Navigate to="/login" replace/>} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
             <Route path='/login' element={<LogIn />} />
-            <Route path="/signup" element={<SignUp/>} />
+            <Route path="/signup" element={<SignUp />} />
           </Route>
       }
     </Routes>
