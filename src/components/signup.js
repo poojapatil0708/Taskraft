@@ -1,9 +1,11 @@
+import axios from "axios";
 import Input from "./input";
 import { Formik } from "formik"
+import { Link } from "react-router-dom";
 import * as Yup from 'yup'
+import { toast } from "react-toastify";
 
 const SignUp = () => {
-
 
     const initialValues = {
         first_name: '',
@@ -13,7 +15,14 @@ const SignUp = () => {
     }
 
     const onSubmit = (values) => {
-        console.log(values)
+        const APIURL = "http://localhost:8000";
+        axios({ method:'POST', url: `${APIURL}/signup`, data:values })
+        .then(response => {
+            toast.success('Account created')
+        })
+        .catch(err=> {
+            toast.error(err.response?.data?.message || 'Something went wrong')
+        })
     }
 
     const validationSchema = () => Yup.object().shape({
@@ -24,21 +33,25 @@ const SignUp = () => {
     })
 
     return (
-        <div className="d-flex justify-content-center align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center">
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ touched, values, setFieldTouched, setFieldValue, handleSubmit, errors, isValid, dirty }) => {
                     return (
-                        <div className="d-flex flex-column justyfy-content-center w-50 ">
+                        <div className="card p-4 col-md-5 col-11">
                             <h2 className="text-center"><b>SignUp</b></h2>
                             <Input error={touched.first_name && errors.first_name ? errors.first_name : null} id='first_name' name='first_name' type='text' placeholder='Enter First name' label='First Name :' onChange={(val) => { setFieldValue('first_name', val); setFieldTouched('first_name') }} vallue={values.first_name} />
                             <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Enter Last name' label='Last Name :' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
                             <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Enter Email Id' label='Email Id :' onChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
-                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='passworrd' placeholder='Enter Password' label='Password :' onChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
-                            <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary">SignUp</button>
-                        </div>
+                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Enter Password' label='Password :' onChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
+                            <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary" type="submit">SignUp</button>
+                </div>
                     );
                 }}
             </Formik>
+            <div className="d-flex mt-2 align-items-center">
+                <div className="mx-1">Already have an account? </div>
+                <Link className="text-primary" style={{ textDecoration: 'none' }} to='/login'>Login</Link>
+            </div>
         </div>
     );
 }
