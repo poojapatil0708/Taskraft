@@ -12,7 +12,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <BrowserRouter>
           <ApplicationRoutes />
-          <ToastContainer position='bottom-right' />
+          <div style={{ height: '0px' }}><ToastContainer position='bottom-right' /></div>
         </BrowserRouter>
       </PersistGate>
     </Provider>
