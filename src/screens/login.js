@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
-import Input from "./input";
+import Input from "../components/input";
 import * as Yup from 'yup';
 import axios from "axios";
 import { Link } from "react-router-dom";

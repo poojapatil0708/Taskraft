@@ -1,8 +1,9 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "../components/home";
-import LogIn from "../components/login";
+import LogIn from "../screens/login";
 import { useSelector } from "react-redux";
-import SignUp from "../components/signup";
+import SignUp from "../screens/signup";
+import DisplayTask from "../screens/display-task";
+import CreateUpdateTask from "../screens/create-update-task";
 
 
 const ApplicationRoutes = () => {
@@ -15,7 +16,9 @@ const ApplicationRoutes = () => {
         user ?
           <Route>
             <Route path="*" element={<Navigate to="/" replace />} />
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<DisplayTask />} />
+            <Route path='/create-task' element={<CreateUpdateTask />} />
+            <Route path='/update-task' element={<CreateUpdateTask />} />
           </Route>
           :
           <Route>

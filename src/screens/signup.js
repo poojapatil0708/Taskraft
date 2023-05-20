@@ -1,5 +1,5 @@
 import axios from "axios";
-import Input from "./input";
+import Input from "../components/input";
 import { Formik } from "formik"
 import { Link } from "react-router-dom";
 import * as Yup from 'yup'
