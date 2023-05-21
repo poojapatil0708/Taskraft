@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import Input from "../components/input";
+import { BackIcon } from "../components/icons";
 
 const CreateUpdateTask = () => {
 
@@ -48,8 +49,11 @@ const CreateUpdateTask = () => {
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ values, setFieldValue, handleSubmit, errors }) => {
                     return (
-                        <div className='d-flex align-items-center justify-content-center flex-column bg-white p-5 rounded shadow'>
-                            <h3>{state ? 'Edit Task' : 'Add Task'}</h3>
+                        <div className='d-flex flex-column bg-white p-5 rounded shadow'>
+                            <div className="d-flex align-items-center">
+                                <BackIcon onClick={() => navigate(-1)} />
+                                <h3 className="px-3">{state ? 'Edit Task' : 'Add Task'}</h3>
+                            </div>
                             <Input type='text' placeholder='Title' onChange={(e) => setFieldValue('title', e)} value={values.title} error={errors.title} />
                             <Input type='text' placeholder='description' onChange={(e) => setFieldValue('description', e)} value={values.description} error={errors.description} />
                             <button className="btn btn-primary" onClick={handleSubmit} type='submit'>{state ? 'Update' : 'Create'}</button>
