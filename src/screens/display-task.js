@@ -6,6 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import constants from "../constants";
 
 const DisplayTask = () => {
 
@@ -16,7 +17,7 @@ const DisplayTask = () => {
 
 
     useEffect(() => {
-        const APIURL = 'http://localhost:8000';
+        const APIURL = constants.base_url_production;
         axios({ method: 'GET', url: `${APIURL}/tasks`, headers: { Authorization: `Bearer ${token}` } })
             .then(response => setTasks(response.data))
             .catch(err => toast.error('Error to get task'))

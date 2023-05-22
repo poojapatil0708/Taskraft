@@ -4,6 +4,7 @@ import { Formik } from "formik"
 import { Link } from "react-router-dom";
 import * as Yup from 'yup'
 import { toast } from "react-toastify";
+import constants from "../constants";
 
 const SignUp = () => {
 
@@ -15,7 +16,7 @@ const SignUp = () => {
     }
 
     const onSubmit = (values) => {
-        const APIURL = "http://localhost:8000";
+        const APIURL = constants.base_url_production;
         axios({ method:'POST', url: `${APIURL}/signup`, data:values })
         .then(response => {
             toast.success('Account created')

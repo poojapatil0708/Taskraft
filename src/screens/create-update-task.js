@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import * as Yup from 'yup';
 import Input from "../components/input";
 import { BackIcon } from "../components/icons";
+import constants from "../constants";
 
 const CreateUpdateTask = () => {
 
@@ -26,7 +27,7 @@ const CreateUpdateTask = () => {
     })
 
     const onSubmit = (values) => {
-        const APIURL = 'http://localhost:8000';
+        const APIURL = constants.base_url_production;
         if (state) {
             axios({ method: 'put', url: `${APIURL}/task/${state._id}`, data: values, headers: { Authorization: `Bearer ${token}` } })
                 .then(response => {

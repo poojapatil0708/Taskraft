@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { setUser } from "../redux/user-reducer";
 import { toast } from "react-toastify";
+import constants from "../constants";
 
 const LogIn = () => {
 
@@ -18,7 +19,7 @@ const LogIn = () => {
     })
 
     const onSubmit = (values) => {
-        axios({ method: 'POST', url: `http://localhost:8000/login`, data: values })
+        axios({ method: 'POST', url: `${constants.base_url_production}/login`, data: values })
             .then(response => dispatch(setUser(response.data)))
             .catch(err => toast.error(err.response?.data?.message || 'Somthing went wrong'))
     }

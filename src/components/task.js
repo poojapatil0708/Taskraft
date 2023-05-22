@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { DeleteIcon, EditIcon } from "./icons";
 import { useNavigate } from "react-router-dom";
+import constants from "../constants";
 
 const Task = ({ task, onDelete }) => {
 
@@ -10,7 +11,7 @@ const Task = ({ task, onDelete }) => {
     const navigate = useNavigate();
 
     const deleteTask = () => {
-        const APIURL = 'http://localhost:8000';
+        const APIURL = constants.base_url_production;
         axios({ method: 'delete', url: `${APIURL}/task/${task._id}`, headers: { Authorization: `Bearer ${token}` } })
             .then(() => {
                 onDelete()
