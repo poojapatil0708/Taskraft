@@ -7,10 +7,13 @@ import { Link } from "react-router-dom";
 import { setUser } from "../redux/user-reducer";
 import { toast } from "react-toastify";
 import constants from "../constants";
+import { useState } from "react";
+import Loader from "../components/loader";
 
 const LogIn = () => {
 
     const initialValues = { email: '', password: '' }
+    const [isLoading, setIsLoding] = useState(false)
     const dispatch = useDispatch();
 
     const validationSchema = () => Yup.object().shape({
@@ -19,9 +22,16 @@ const LogIn = () => {
     })
 
     const onSubmit = (values) => {
+        setIsLoding(true)
         axios({ method: 'POST', url: `${constants.base_url_production}/login`, data: values })
-            .then(response => dispatch(setUser(response.data)))
-            .catch(err => toast.error(err.response?.data?.message || 'Somthing went wrong'))
+            .then(response => {
+                setIsLoding(false);
+                dispatch(setUser(response.data))
+            })
+            .catch(err => {
+                setIsLoding(false);
+                toast.error(err.response?.data?.message || 'Somthing went wrong')
+            })
     }
 
     return (
@@ -34,7 +44,10 @@ const LogIn = () => {
                                 <h3>Login</h3>
                                 <Input type='text' placeholder='Enter Email Id' error={errors.email} onChange={(e) => setFieldValue('email', e)} value={values.email} />
                                 <Input error={errors.password} type='password' placeholder='Password' onChange={(e) => setFieldValue('password', e)} value={values.password} />
-                                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
+                                {!isLoading ? 
+                                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
+                                    :
+                                    <Loader/>}
                             </div>
                             <div className="d-flex justify-content-center mt-2">
                                 <div className="mx-1 text-dark">Dont have account?</div>

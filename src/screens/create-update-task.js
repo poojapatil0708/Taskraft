@@ -7,10 +7,13 @@ import * as Yup from 'yup';
 import Input from "../components/input";
 import { BackIcon } from "../components/icons";
 import constants from "../constants";
+import { useState } from "react";
+import Loader from "../components/loader";
 
 const CreateUpdateTask = () => {
 
     const { user, token } = useSelector(state => state.user);
+    const [isLoading, setIsLoding] = useState(false)
     const navigate = useNavigate();
     const { state } = useLocation();
 
@@ -27,21 +30,31 @@ const CreateUpdateTask = () => {
     })
 
     const onSubmit = (values) => {
+        setIsLoding(true)
         const APIURL = constants.base_url_production;
         if (state) {
             axios({ method: 'put', url: `${APIURL}/task/${state._id}`, data: values, headers: { Authorization: `Bearer ${token}` } })
                 .then(response => {
+                    setIsLoding(false)
                     navigate(-1)
                     toast.success('Task Updated')
                 })
-                .catch(err => toast.error(err.response?.data?.message || 'Error updating task'))
+                .catch(err => {
+                    setIsLoding(false)
+                    toast.error(err.response?.data?.message || 'Error updating task')
+                })
         } else {
+            setIsLoding(true)
             axios({ method: 'POST', url: `${APIURL}/task`, data: values, headers: { Authorization: `Bearer ${token}` } })
                 .then(response => {
+                    setIsLoding(false)
                     navigate(-1)
                     toast.success('Task added')
                 })
-                .catch(err => toast.error('Error adding task'))
+                .catch(err => {
+                    setIsLoding(false);
+                    toast.error('Error adding task')
+                })
         }
     }
 
@@ -57,7 +70,13 @@ const CreateUpdateTask = () => {
                             </div>
                             <Input type='text' placeholder='Title' onChange={(e) => setFieldValue('title', e)} value={values.title} error={errors.title} />
                             <Input type='text' placeholder='description' onChange={(e) => setFieldValue('description', e)} value={values.description} error={errors.description} />
-                            <button className="btn btn-primary" onClick={handleSubmit} type='submit'>{state ? 'Update' : 'Create'}</button>
+                            {
+                                !isLoading 
+                                ?
+                                <button className="btn btn-primary" onClick={handleSubmit} type='submit'>{state ? 'Update' : 'Create'}</button>
+                                :
+                                <Loader/>
+                            }
                         </div>
                     )
                 }}

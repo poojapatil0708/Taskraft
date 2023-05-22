@@ -4,20 +4,28 @@ import { toast } from "react-toastify";
 import { DeleteIcon, EditIcon } from "./icons";
 import { useNavigate } from "react-router-dom";
 import constants from "../constants";
+import { useState } from "react";
+import Loader from "./loader";
 
 const Task = ({ task, onDelete }) => {
 
     const { token } = useSelector(state => state.user);
+    const [isLoading, setIsLoding] = useState(false)
     const navigate = useNavigate();
 
     const deleteTask = () => {
+        setIsLoding(true)
         const APIURL = constants.base_url_production;
         axios({ method: 'delete', url: `${APIURL}/task/${task._id}`, headers: { Authorization: `Bearer ${token}` } })
             .then(() => {
+                setIsLoding(false);
                 onDelete()
                 toast.success('Taks Deleted!')
             })
-            .catch(err => toast.error(err.response?.data?.message || 'Error deleting task'))
+            .catch(err =>{
+                setIsLoding(false);
+                 toast.error(err.response?.data?.message || 'Error deleting task')
+                })
     }
 
     return (
@@ -28,7 +36,13 @@ const Task = ({ task, onDelete }) => {
             </div>
             <div className='d-flex align-items-center' style={{ cursor: 'pointer' }} >
                 <EditIcon onClick={() => navigate('/update-task', {state: task})} />
-                <DeleteIcon onClick={deleteTask} />
+                {
+                    !isLoading 
+                    ?
+                    <DeleteIcon onClick={deleteTask} />
+                    :
+                    <Loader dontShowMsg/>
+                }
             </div>
         </div>
     );

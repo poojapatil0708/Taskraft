@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 import * as Yup from 'yup'
 import { toast } from "react-toastify";
 import constants from "../constants";
+import { useState } from "react";
+import Loader from "../components/loader";
 
 const SignUp = () => {
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const initialValues = {
         first_name: '',
@@ -16,12 +20,15 @@ const SignUp = () => {
     }
 
     const onSubmit = (values) => {
+        setIsLoading(true)
         const APIURL = constants.base_url_production;
         axios({ method:'POST', url: `${APIURL}/signup`, data:values })
         .then(response => {
+            setIsLoading(false);
             toast.success('Account created')
         })
         .catch(err=> {
+            setIsLoading(false);
             toast.error(err.response?.data?.message || 'Something went wrong')
         })
     }
@@ -44,7 +51,12 @@ const SignUp = () => {
                             <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Enter Last name' label='Last Name :' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
                             <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Enter Email Id' label='Email Id :' onChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
                             <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Enter Password' label='Password :' onChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
-                            <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary" type="submit">SignUp</button>
+                            { !isLoading 
+                                ?
+                                <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary" type="submit">SignUp</button>
+                                :
+                                <Loader/>
+                            }
                 </div>
                     );
                 }}
