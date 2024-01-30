@@ -9,6 +9,9 @@ import { toast } from "react-toastify";
 import constants from "../constants";
 import { useState } from "react";
 import Loader from "../components/loader";
+import { Helmet, HelmetData } from "react-helmet-async";
+
+const helmetData = new HelmetData({});
 
 const LogIn = () => {
 
@@ -36,6 +39,20 @@ const LogIn = () => {
 
     return (
         <div>
+            <Helmet helmetData={helmetData}>
+                <title>My Page Title</title>
+                <meta name="description" content="This is a description of my page" />
+                <meta name="keywords" content="react, meta tags, seo" />
+                <meta name="author" content="Kapil Whaval" />
+                <meta property="og:title" content="My Page Title" />
+                <meta property="og:description" content="This is a description of my page" />
+                <meta property="og:image" content="https://picsum.photos/200" />
+                <meta property="og:url" content="https://example.com/my-page" />
+                <meta name="twitter:title" content="My Page Title" />
+                <meta name="twitter:description" content="This is a description of my page" />
+                <meta name="twitter:image" content="https://picsum.photos/200" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Helmet>
             <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema} >
                 {({ values, setFieldValue, handleSubmit, errors }) => {
                     return (
@@ -44,10 +61,10 @@ const LogIn = () => {
                                 <h3>Login</h3>
                                 <Input type='text' placeholder='Enter Email Id' error={errors.email} onChange={(e) => setFieldValue('email', e)} value={values.email} />
                                 <Input error={errors.password} type='password' placeholder='Password' onChange={(e) => setFieldValue('password', e)} value={values.password} />
-                                {!isLoading ? 
+                                {!isLoading ?
                                     <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
                                     :
-                                    <Loader/>}
+                                    <Loader />}
                             </div>
                             <div className="d-flex justify-content-center mt-2">
                                 <div className="mx-1 text-dark">Dont have account?</div>
