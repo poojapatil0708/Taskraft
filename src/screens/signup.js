@@ -45,15 +45,15 @@ const SignUp = () => {
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ touched, values, setFieldTouched, setFieldValue, handleSubmit, errors, isValid, dirty }) => {
                     return (
-                        <div className="card p-4 col-md-5 col-11">
-                            <h2 className="text-center"><b>SignUp</b></h2>
-                            <Input error={touched.first_name && errors.first_name ? errors.first_name : null} id='first_name' name='first_name' type='text' placeholder='Enter First name' label='First Name :' onChange={(val) => { setFieldValue('first_name', val); setFieldTouched('first_name') }} vallue={values.first_name} />
-                            <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Enter Last name' label='Last Name :' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
-                            <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Enter Email Id' label='Email Id :' onChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
-                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Enter Password' label='Password :' onChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
+                        <div className="card shadow-lg border-0 p-4 col-md-5 col-11 rounded-4">
+                            <h4 className="text-center fw-medium">Create Account</h4>
+                            <Input error={touched.first_name && errors.first_name ? errors.first_name : null} id='first_name' name='first_name' type='text' placeholder='First name' onChange={(val) => { setFieldValue('first_name', val); setFieldTouched('first_name') }} vallue={values.first_name} />
+                            <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Last name' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
+                            <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Email Id' nChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
+                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Password' nChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
                             { !isLoading 
                                 ?
-                                <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary" type="submit">SignUp</button>
+                                <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary p-2" type="submit">SignUp</button>
                                 :
                                 <Loader/>
                             }
