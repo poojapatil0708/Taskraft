@@ -12,11 +12,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //Routes
 app.use("/", api);
-const db_url = process.env.NODE_ENV === 'development' ? process.env.DB_URL_LOCAL : process.env.DB_URL_PROD
+const db_url = process.env.NODE_ENV === 'development' ? process.env.DB_URL_LOCAL : process.env.DB_URL_PROD;
 
 //Database connection
-mongoose.connect(db_url, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log(`${process.env.NODE_ENV === 'development' ? 'development' : 'production'} Database connected`))
+mongoose.connect(db_url)
+    .then(() => console.log(`${process.env.NODE_ENV} database connected`))
     .catch(() => console.log('Something went wrong while connecting DB'));
 
 //Server
