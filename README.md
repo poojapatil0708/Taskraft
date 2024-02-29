@@ -4,9 +4,9 @@
 This project is a tool to manage your daily tasks
 
 ### Features
-1. **Login to have your own tasks on server.
-2. **Create multiple tasks and mark them as completed once done.
-3. **This is a practice project to study and work on some new concepts.
+1. Login to have your own tasks on server.
+2. Create multiple tasks and mark them as completed once done.
+3. This is a practice project to study and work on some new concepts.
 
 ## Built with
 
@@ -26,7 +26,7 @@ Thank you for considering contributing to our project.
 2. Clone the forked repository to your local machine:
 
     ```bash
-    git clone https://github.com/your-name/GenieBlog.git
+    git clone https://github.com/your-name/Taskraft.git
     ```
 
 3. Create a new branch for your changes:
