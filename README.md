@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Taskraft
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Project Overview
+This project is a tool to manage your daily tasks
 
-## Available Scripts
+### Features
+1. **Login to have your own tasks on server.
+2. **Create multiple tasks and mark them as completed once done.
+3. **This is a practice project to study and work on some new concepts.
 
-In the project directory, you can run:
+## Built with
 
-### `npm start`
+- [React.js](https://nextjs.org/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Node.JS](https://nodejs.org/en)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Feature Requests
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To request a feature open a [GitHub issue](https://github.com/poojapatil0708/Taskraft/issues).
 
-### `npm test`
+ ## Contribution Guidelines
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Thank you for considering contributing to our project.
 
-### `npm run build`
+1. Fork the repository to your GitHub account.
+2. Clone the forked repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```bash
+    git clone https://github.com/your-name/GenieBlog.git
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Create a new branch for your changes:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
 
-### `npm run eject`
+4. Make your changes and ensure they adhere to the project's coding style and guidelines.
+5. Test your changes thoroughly to avoid introducing bugs.
+6. Commit your changes with clear and descriptive commit messages:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    git commit -m 'Add your descriptive commit message'
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. Push your changes to your forked repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    git push origin feature/your-feature-name
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+8. Open a pull request against the `main` branch of the original repository.
+9. Provide a clear and concise description of your changes in the pull request, along with any relevant information.
+10. Ensure your pull request passes all checks and tests before requesting a review.
 
-## Learn More
+## Setting Up Environment Variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the project locally, you need to set up the following environment variables:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `DB_URL_LOCAL`: URL of your mongo DB.
 
-### Code Splitting
+You can set these environment variables by creating a `.env.local or .env` file in the server directory of the project and adding the variables with their respective values:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Ensure not to share sensitive information like API keys publicly.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Once you've set up the environment variables, you can run the project locally without any issues. If you encounter any problems, feel free to reach out for assistance.
