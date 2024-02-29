@@ -22,10 +22,10 @@ const Task = ({ task, onDelete }) => {
                 onDelete()
                 toast.success('Taks Deleted!')
             })
-            .catch(err =>{
+            .catch(err => {
                 setIsLoding(false);
-                 toast.error(err.response?.data?.message || 'Error deleting task')
-                })
+                toast.error(err.response?.data?.message || 'Error deleting task')
+            })
     }
 
     return (
@@ -35,13 +35,18 @@ const Task = ({ task, onDelete }) => {
                 <span>{task.description}</span>
             </div>
             <div className='d-flex align-items-center' style={{ cursor: 'pointer' }} >
-                <EditIcon onClick={() => navigate('/update-task', {state: task})} />
+                <div onClick={() => navigate('/update-task', { state: task })} >
+                    <EditIcon />
+                </div>
                 {
-                    !isLoading 
-                    ?
-                    <DeleteIcon onClick={deleteTask} />
-                    :
-                    <Loader dontShowMsg/>
+                    !isLoading
+                        ?
+                        <div onClick={deleteTask}>
+                            <DeleteIcon />
+                        </div>
+
+                        :
+                        <Loader dontShowMsg />
                 }
             </div>
         </div>

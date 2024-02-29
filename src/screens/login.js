@@ -58,17 +58,17 @@ const LogIn = () => {
                     return (
                         <div className="d-flex flex-column align-items-center justify-content-center h-100">
                             <div className="card shadow-lg border-0 p-4 col-md-5 col-11">
-                                <h3>Login</h3>
-                                    <Input type='text' placeholder='Enter Email Id' error={errors.email} onChange={(e) => setFieldValue('email', e)} value={values.email} />
-                                    <Input error={errors.password} type='password' placeholder='Password' onChange={(e) => setFieldValue('password', e)} value={values.password} />
-                                    {!isLoading ?
-                                        <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
-                                        :
-                                        <Loader />}
-                            </div>
-                            <div className="d-flex justify-content-center mt-2">
-                                <div className="mx-1 text-dark">Dont have account?</div>
-                                <Link className="text-primary" style={{ textDecoration: 'none' }} to='/signup'>Create account</Link>
+                                <h3 className="text-center fw-medium">Login</h3>
+                                <Input type='text' placeholder='Enter Email Id' error={errors.email} onChange={(e) => setFieldValue('email', e)} value={values.email} />
+                                <Input error={errors.password} type='password' placeholder='Password' onChange={(e) => setFieldValue('password', e)} value={values.password} />
+                                {!isLoading ?
+                                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
+                                    :
+                                    <Loader />}
+                                <div className="d-flex justify-content-center mt-3">
+                                    <div className="mx-1 text-dark">Dont have account?</div>
+                                    <Link className="text-primary" style={{ textDecoration: 'none' }} to='/signup'>Create account</Link>
+                                </div>
                             </div>
                         </div>
                     )

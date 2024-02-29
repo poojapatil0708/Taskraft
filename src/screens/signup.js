@@ -22,15 +22,15 @@ const SignUp = () => {
     const onSubmit = (values) => {
         setIsLoading(true)
         const APIURL = constants.base_url_production;
-        axios({ method:'POST', url: `${APIURL}/signup`, data:values })
-        .then(response => {
-            setIsLoading(false);
-            toast.success('Account created')
-        })
-        .catch(err=> {
-            setIsLoading(false);
-            toast.error(err.response?.data?.message || 'Something went wrong')
-        })
+        axios({ method: 'POST', url: `${APIURL}/signup`, data: values })
+            .then(response => {
+                setIsLoading(false);
+                toast.success('Account created')
+            })
+            .catch(err => {
+                setIsLoading(false);
+                toast.error(err.response?.data?.message || 'Something went wrong')
+            })
     }
 
     const validationSchema = () => Yup.object().shape({
@@ -49,22 +49,22 @@ const SignUp = () => {
                             <h4 className="text-center fw-medium">Create Account</h4>
                             <Input error={touched.first_name && errors.first_name ? errors.first_name : null} id='first_name' name='first_name' type='text' placeholder='First name' onChange={(val) => { setFieldValue('first_name', val); setFieldTouched('first_name') }} vallue={values.first_name} />
                             <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Last name' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
-                            <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Email Id' nChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
-                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Password' nChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
-                            { !isLoading 
+                            <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Email Id' onChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
+                            <Input error={touched.password && errors.password ? errors.password : null} id='password' name='password' type='password' placeholder='Password' onChange={(val) => { setFieldValue('password', val); setFieldTouched('password') }} value={values.password} />
+                            {!isLoading
                                 ?
                                 <button disabled={!(isValid && dirty)} onClick={handleSubmit} className="btn btn-primary p-2" type="submit">SignUp</button>
                                 :
-                                <Loader/>
+                                <Loader />
                             }
-                </div>
+                            <div className="d-flex mt-3 justify-content-center ">
+                                <div className="mx-1">Already have an account? </div>
+                                <Link className="text-primary" style={{ textDecoration: 'none' }} to='/login'>Login</Link>
+                            </div>
+                        </div>
                     );
                 }}
             </Formik>
-            <div className="d-flex mt-2 align-items-center">
-                <div className="mx-1">Already have an account? </div>
-                <Link className="text-primary" style={{ textDecoration: 'none' }} to='/login'>Login</Link>
-            </div>
         </div>
     );
 }
