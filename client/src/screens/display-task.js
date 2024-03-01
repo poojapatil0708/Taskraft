@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import constants from "../constants";
 import Loader from "../components/loader";
 import Navbar from "../components/navbar";
+import { Image } from "@chakra-ui/react";
+import noTask from "../assets/noTask.png";
 
 const DisplayTask = () => {
 
@@ -18,7 +20,7 @@ const DisplayTask = () => {
 
     useEffect(() => {
         setIsLoding(true)
-        const APIURL = constants.base_url_production;
+        const APIURL = constants.base_url_local;
         axios({ method: 'GET', url: `${APIURL}/tasks`, headers: { Authorization: `Bearer ${token}` } })
             .then(response => {
                 setIsLoding(false)
@@ -35,8 +37,12 @@ const DisplayTask = () => {
         <div>
             <Navbar />
             <div className='d-flex flex-column align-items-center mt-4 '>
-                <h3>Your Tasks</h3>
-                {!isLoading && !task.length ? <div><b>No any task added</b></div> : null}
+                <h2 className="mb-3" >Add Your Tasks</h2>
+                {!isLoading && !task.length ?
+                    <div className="d-flex align-items-center justify-content-center flex-column" >
+                        <b>No any task added</b>
+                        <Image boxSize='40%' src={noTask} alt='No Task' />
+                    </div> : null}
                 {!isLoading
                     ? task.map((item, index) =>
                         <Task key={index} task={item} onDelete={() => setTasks(task.filter((innrItem, innrIndex) => innrIndex !== index))} />)

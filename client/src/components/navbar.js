@@ -20,7 +20,7 @@ const Navbar = () => {
     return (
         <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
             <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-                <Box fontWeight="bold">TodoList</Box>
+                <Box fontWeight="bold">Welcom to Taskraft</Box>
                 <Stack direction={'row'} spacing={5} alignItems="center" >
                     <Button onClick={toggleColorMode}>
                         {colorMode === 'light' ? <IoIosMoon size={25} /> : <IoIosSunny size={25} />}

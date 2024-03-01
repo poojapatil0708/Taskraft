@@ -26,7 +26,7 @@ const LogIn = () => {
 
     const onSubmit = (values) => {
         setIsLoding(true)
-        axios({ method: 'POST', url: `${constants.base_url_production}/login`, data: values })
+        axios({ method: 'POST', url: `${constants.base_url_local}/login`, data: values })
             .then(response => {
                 setIsLoding(false);
                 dispatch(setUser(response.data))
@@ -58,7 +58,7 @@ const LogIn = () => {
                     return (
                         <div className="d-flex flex-column align-items-center justify-content-center h-100">
                             <div className="card shadow-lg border-0 p-4 col-md-5 col-11">
-                                <h3 className="text-center fw-medium">Login</h3>
+                                <h3 className="text-center text-primary fw-semibold">Login</h3>
                                 <Input type='text' placeholder='Enter Email Id' error={errors.email} onChange={(e) => setFieldValue('email', e)} value={values.email} />
                                 <Input error={errors.password} type='password' placeholder='Password' onChange={(e) => setFieldValue('password', e)} value={values.password} />
                                 {!isLoading ?

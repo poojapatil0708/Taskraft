@@ -21,7 +21,7 @@ const SignUp = () => {
 
     const onSubmit = (values) => {
         setIsLoading(true)
-        const APIURL = constants.base_url_production;
+        const APIURL = constants.base_url_local;
         axios({ method: 'POST', url: `${APIURL}/signup`, data: values })
             .then(response => {
                 setIsLoading(false);
@@ -46,7 +46,7 @@ const SignUp = () => {
                 {({ touched, values, setFieldTouched, setFieldValue, handleSubmit, errors, isValid, dirty }) => {
                     return (
                         <div className="card shadow-lg border-0 p-4 col-md-5 col-11 rounded-4">
-                            <h4 className="text-center fw-medium">Create Account</h4>
+                            <h3 className="text-center fw-semibold text-primary">Create Account</h3>
                             <Input error={touched.first_name && errors.first_name ? errors.first_name : null} id='first_name' name='first_name' type='text' placeholder='First name' onChange={(val) => { setFieldValue('first_name', val); setFieldTouched('first_name') }} vallue={values.first_name} />
                             <Input error={touched.last_name && errors.last_name ? errors.last_name : null} id='last_name' name='last_name' type='text' placeholder='Last name' onChange={(val) => { setFieldValue('last_name', val); setFieldTouched('last_name') }} value={values.last_name} />
                             <Input error={touched.email && errors.email ? errors.email : null} id='email' name='email' type='email' placeholder='Email Id' onChange={(val) => { setFieldValue('email', val); setFieldTouched('email') }} value={values.email} />
@@ -58,7 +58,7 @@ const SignUp = () => {
                                 <Loader />
                             }
                             <div className="d-flex mt-3 justify-content-center ">
-                                <div className="mx-1">Already have an account? </div>
+                                <div className="mx-1 text-black">Already have an account? </div>
                                 <Link className="text-primary" style={{ textDecoration: 'none' }} to='/login'>Login</Link>
                             </div>
                         </div>

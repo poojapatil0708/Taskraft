@@ -15,7 +15,7 @@ const Task = ({ task, onDelete }) => {
 
     const deleteTask = () => {
         setIsLoding(true)
-        const APIURL = constants.base_url_production;
+        const APIURL = constants.base_url_local;
         axios({ method: 'delete', url: `${APIURL}/task/${task._id}`, headers: { Authorization: `Bearer ${token}` } })
             .then(() => {
                 setIsLoding(false);
@@ -31,8 +31,8 @@ const Task = ({ task, onDelete }) => {
     return (
         <div className='card d-flex flex-row mb-2 mt-2 col-sm-12 col-md-6 p-2 justify-content-between' >
             <div className='d-flex flex-column'>
-                <span>{task.title}</span>
-                <span>{task.description}</span>
+                <span className="text-black">{task.title}</span>
+                <span className="text-black">{task.description}</span>
             </div>
             <div className='d-flex align-items-center' style={{ cursor: 'pointer' }} >
                 <div onClick={() => navigate('/update-task', { state: task })} >
@@ -44,7 +44,6 @@ const Task = ({ task, onDelete }) => {
                         <div onClick={deleteTask}>
                             <DeleteIcon />
                         </div>
-
                         :
                         <Loader dontShowMsg />
                 }
