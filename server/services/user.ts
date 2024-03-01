@@ -1,18 +1,19 @@
+const { User: UserType } = require('../types');
 const User = require('../models/user');
 
-exports.getUser = (query) => {
+exports.getUser = (query: Partial<typeof UserType>) => {
     return User.findOne(query)
-        .then(user => {
+        .then((user: typeof UserType) => {
             if (user) {
                 return user
             } else return user
         })
-        .catch(err => { throw err })
+        .catch((err: any) => { throw err })
 }
 
-exports.createUser = (query) => {
+exports.createUser = (query: Partial<typeof UserType>) => {
     return User.create(query)
-        .then(user => {
+        .then((user: typeof UserType) => {
             if (!user) throw ({ message: 'Error creating user!' });
             else {
                 user.encry_password = undefined;
@@ -20,5 +21,5 @@ exports.createUser = (query) => {
                 return user
             }
         })
-        .catch(err => { throw err })
+        .catch((err: any) => { throw err })
 }

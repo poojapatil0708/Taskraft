@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true })
 
 userSchema.virtual("password")
-    .set(function (password) {
+    .set(function (password: string) {
         this._password = password;
         this.salt = v4();
         this.encry_password = this.securePassword(password)
@@ -32,10 +32,10 @@ userSchema.virtual("password")
     })
 
 userSchema.methods = {
-    authenticate: function (plainPassword) {
+    authenticate: function (plainPassword: string) {
         return this.securePassword(plainPassword) === this.encry_password;
     },
-    securePassword: function (plainPassword) {
+    securePassword: function (plainPassword: string) {
         if (!plainPassword) return '';
         try {
             return crypto.createHmac('sha256', this.salt)
@@ -48,3 +48,5 @@ userSchema.methods = {
 }
 
 module.exports = mongoose.model('User', userSchema);
+
+export { }

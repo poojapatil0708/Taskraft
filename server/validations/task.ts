@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const { validateRequest } = require('./validate-request');
+const { Request, Response, NextFunction } = require('express');
 
-exports.createTaskSchema = (req, res, next) => {
+exports.createTaskSchema = (req: typeof Request, res: typeof Response, next: typeof NextFunction) => {
     const schema = Joi.object({
         user: Joi.string().required(),
         title: Joi.string().min(3).max(100).required(),
@@ -11,7 +12,7 @@ exports.createTaskSchema = (req, res, next) => {
     validateRequest(req, res, next, schema);
 }
 
-exports.updateTaskSchema = (req, res, next) => {
+exports.updateTaskSchema = (req: typeof Request, res: typeof Response, next: typeof NextFunction) => {
     const schema = Joi.object({
         user: Joi.string().required(),
         title: Joi.string().min(3).max(100).required(),
@@ -20,3 +21,5 @@ exports.updateTaskSchema = (req, res, next) => {
     })
     validateRequest(req, res, next, schema);
 }
+
+export {};

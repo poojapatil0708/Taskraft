@@ -1,7 +1,8 @@
 const Joi = require('joi');
 const { validateRequest } = require('./validate-request');
+const { Request, Response, NextFunction } = require('express');
 
-exports.createAccountSchema = (req, res, next) => {
+exports.createAccountSchema = (req: typeof Request, res: typeof Response, next: typeof NextFunction) => {
 
     const schema = Joi.object({
         first_name: Joi.string().min(3).max(100).required(),
@@ -12,7 +13,7 @@ exports.createAccountSchema = (req, res, next) => {
     validateRequest(req, res, next, schema);
 }
 
-exports.loginSchema = (req, res, next) => {
+exports.loginSchema = (req: typeof Request, res: typeof Response, next: typeof NextFunction) => {
     const schema = Joi.object({
         email: Joi.string().email().required(),
         password: Joi.string().required(),
@@ -20,3 +21,5 @@ exports.loginSchema = (req, res, next) => {
     })
     validateRequest(req, res, next, schema);
 }
+
+export { };
