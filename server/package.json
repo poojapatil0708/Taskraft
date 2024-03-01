@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:w": "set NODE_ENV=development&&nodemon app.js",
-    "dev": "NODE_ENV=development nodemon app.js",
-    "prod": "node app.js"
+    "dev:w": "set NODE_ENV=development&&nodemon app.ts",
+    "dev": "NODE_ENV=development ts-node app.ts",
+    "prod": "node app.ts"
   },
   "author": "Kapil",
   "license": "ISC",

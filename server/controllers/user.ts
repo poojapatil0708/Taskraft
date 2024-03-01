@@ -1,22 +1,24 @@
 const jwt = require("jsonwebtoken");
+const { User } = require('../types');
+const { Request, Response } = require('express');
 const { getUser, createUser } = require('../services/user');
 
-exports.signup = (req, res) => {
+exports.signup = (req: typeof Request, res: typeof Response) => {
     getUser({ email: req.body.email })
-        .then(user => {
+        .then((user: typeof User) => {
             if (!user) { return createUser(req.body) }
             else throw ({ message: 'Account already exist with this email' });
         })
-        .then(newuser => {
+        .then((newuser: typeof User) => {
             let token = jwt.sign({ id: newuser._id }, 'ABDVDNILLKKJIIJJKJDGFJBF');
             return res.status(200).send({ message: 'Account Created Successfully!', user: newuser, token })
         })
-        .catch(err => res.status(400).send(err))
+        .catch((err: any) => res.status(400).send(err))
 }
 
-exports.login = (req, res) => {
+exports.login = (req: typeof Request, res: typeof Response) => {
     getUser({ email: req.body.email })
-        .then(user => {
+        .then((user: typeof User) => {
             if (user) {
                 if (user.authenticate(req.body.password)) {
                     user.salt = undefined;
@@ -27,5 +29,7 @@ exports.login = (req, res) => {
                 else throw ({ status: 400, message: 'Invalid email or password' });
             } else return res.status(404).send({ message: 'User not found' })
         })
-        .catch(err => res.status(err.status || 400).send({ message: err.message || 'Error logging in', err }));
+        .catch((err: any) => res.status(err.status || 400).send({ message: err.message || 'Error logging in', err }));
 }
+
+export { };
