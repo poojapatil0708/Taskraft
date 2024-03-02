@@ -66,7 +66,7 @@ const CreateUpdateTask = () => {
                         <div className='d-flex flex-column bg-white p-5 rounded shadow'>
                             <div className="d-flex align-items-center">
                                 <BackIcon onClick={() => navigate(-1)} />
-                                <h3 className="px-3 text-dark ">{state ? 'Edit Task' : 'Add Task'}</h3>
+                                <h3 className="px-3 text-dark">{state ? 'Edit Task' : 'Add Task'}</h3>
                             </div>
                             <Input type='text' placeholder='Title' onChange={(e) => setFieldValue('title', e)} value={values.title} error={errors.title} />
                             <Input type='text' placeholder='description' onChange={(e) => setFieldValue('description', e)} value={values.description} error={errors.description} />

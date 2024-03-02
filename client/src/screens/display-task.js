@@ -45,7 +45,7 @@ const DisplayTask = () => {
                     </div> : null}
                 {!isLoading
                     ? task.map((item, index) =>
-                        <Task key={index} task={item} onDelete={() => setTasks(task.filter((innrItem, innrIndex) => innrIndex !== index))} />)
+                        <Task key={index} item={item} onDelete={() => setTasks(task.filter((innrItem, innrIndex) => innrIndex !== index))} />)
                     :
                     <Loader />}
             </div>
