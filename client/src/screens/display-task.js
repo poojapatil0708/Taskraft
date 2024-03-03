@@ -4,7 +4,6 @@ import Task from "../components/task";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import constants from "../constants";
 import Loader from "../components/loader";
 import Navbar from "../components/navbar";
@@ -16,7 +15,6 @@ const DisplayTask = () => {
     const [task, setTasks] = useState([]);
     const [isLoading, setIsLoding] = useState(false)
     const { token } = useSelector(state => state.user);
-    const navigate = useNavigate();
 
     useEffect(() => {
         setIsLoding(true)
@@ -34,9 +32,9 @@ const DisplayTask = () => {
     }, [])
 
     return (
-        <div>
+        <div className="d-flex flex-column">
             <Navbar />
-            <div className='d-flex flex-column align-items-center mt-4 '>
+            <div className='d-flex flex-column col-md-6 col-sm-12 mt-4 align-self-center'>
                 <h2 className="mb-3" >Add Your Tasks</h2>
                 {!isLoading && !task.length ?
                     <div className="d-flex align-items-center justify-content-center flex-column" >
@@ -48,9 +46,9 @@ const DisplayTask = () => {
                         <Task key={index} item={item} onDelete={() => setTasks(task.filter((innrItem, innrIndex) => innrIndex !== index))} />)
                     :
                     <Loader />}
-            </div>
-            <div style={{ position: 'absolute', right: 20, bottom: 20 }} onClick={() => navigate('/create-task')} >
-                <AddIcon />
+                <div className="d-flex justify-content-end" onClick={() => setTasks([...task, { title: '', description: '' }])} >
+                    <AddIcon />
+                </div>
             </div>
         </div>
     );

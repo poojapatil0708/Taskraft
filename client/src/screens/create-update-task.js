@@ -32,30 +32,16 @@ const CreateUpdateTask = () => {
     const onSubmit = (values) => {
         setIsLoding(true)
         const APIURL = constants.base_url_local;
-        if (state) {
-            axios({ method: 'put', url: `${APIURL}/task/${state._id}`, data: values, headers: { Authorization: `Bearer ${token}` } })
-                .then(response => {
-                    setIsLoding(false)
-                    navigate(-1)
-                    toast.success('Task Updated')
-                })
-                .catch(err => {
-                    setIsLoding(false)
-                    toast.error(err.response?.data?.message || 'Error updating task')
-                })
-        } else {
-            setIsLoding(true)
-            axios({ method: 'POST', url: `${APIURL}/task`, data: values, headers: { Authorization: `Bearer ${token}` } })
-                .then(response => {
-                    setIsLoding(false)
-                    navigate(-1)
-                    toast.success('Task added')
-                })
-                .catch(err => {
-                    setIsLoding(false);
-                    toast.error('Error adding task')
-                })
-        }
+        axios({ method: 'POST', url: `${APIURL}/task`, data: values, headers: { Authorization: `Bearer ${token}` } })
+            .then(response => {
+                setIsLoding(false)
+                navigate(-1)
+                toast.success('Task added')
+            })
+            .catch(err => {
+                setIsLoding(false);
+                toast.error('Error adding task')
+            })
     }
 
     return (
@@ -66,16 +52,16 @@ const CreateUpdateTask = () => {
                         <div className='d-flex flex-column bg-white p-5 rounded shadow'>
                             <div className="d-flex align-items-center">
                                 <BackIcon onClick={() => navigate(-1)} />
-                                <h3 className="px-3 text-dark">{state ? 'Edit Task' : 'Add Task'}</h3>
+                                <h3 className="px-3 text-dark"> 'Add Task</h3>
                             </div>
                             <Input type='text' placeholder='Title' onChange={(e) => setFieldValue('title', e)} value={values.title} error={errors.title} />
                             <Input type='text' placeholder='description' onChange={(e) => setFieldValue('description', e)} value={values.description} error={errors.description} />
                             {
-                                !isLoading 
-                                ?
-                                <button className="btn btn-primary" onClick={handleSubmit} type='submit'>{state ? 'Update' : 'Create'}</button>
-                                :
-                                <Loader/>
+                                !isLoading
+                                    ?
+                                    <button className="btn btn-primary" onClick={handleSubmit} type='submit'>{state ? 'Update' : 'Create'}</button>
+                                    :
+                                    <Loader />
                             }
                         </div>
                     )
