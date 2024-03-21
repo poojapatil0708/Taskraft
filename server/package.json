@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:w": "set NODE_ENV=development&&nodemon app.ts",
     "dev": "NODE_ENV=development ts-node app.ts",
-    "prod": "ts-node app.ts"
+    "prod": "node dist/app.js",
+    "build": "tsc"
   },
   "author": "Kapil",
   "license": "ISC",
